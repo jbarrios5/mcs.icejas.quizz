@@ -6,5 +6,7 @@ The app has  dashboard where there are the questions and total scored has done f
 
 Of corse the app allows to register users and show another users total scored
 
-# Database diagraman
-I use postrgresql 
+# Database diagram
+I use postrgresql for the database 
+
+![Diagrama](https://ibb.co/W5yr20q)
