@@ -8,5 +8,8 @@ Of corse the app allows to register users and show another users total scored
 
 # Database diagram
 I use postrgresql for the database 
+<p align="center">
+  <img src="https://github.com/jbarrios5/mcs.icejas.quizz/blob/main/src/main/resources/static/er.png" width="500" heigth= "500" title="hover text">
+  
+</p>
 
-![Diagrama](https://ibb.co/W5yr20q)
