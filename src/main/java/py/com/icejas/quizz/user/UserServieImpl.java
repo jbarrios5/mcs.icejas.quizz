@@ -1,4 +1,4 @@
-package py.com.icejas.quizz.service;
+package py.com.icejas.quizz.user;
 
 import org.springframework.stereotype.Service;
 import py.com.icejas.quizz.model.User;

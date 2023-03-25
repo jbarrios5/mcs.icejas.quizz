@@ -1,4 +1,4 @@
-package py.com.icejas.quizz.service;
+package py.com.icejas.quizz.user;
 
 import py.com.icejas.quizz.model.User;
 
