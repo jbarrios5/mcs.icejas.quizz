@@ -1,11 +1,7 @@
 package py.com.icejas.quizz.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import py.com.icejas.quizz.model.User;
-import py.com.icejas.quizz.user.UserService;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,7 +13,14 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/")
-    public List<User> getUsers(){
+    public List<UserDTO> getUsers(){
         return userService.getUsers();
+    }
+
+    @PostMapping("/")
+    public void insertUser(
+            @RequestBody User user
+    ){
+        userService.insertUser(user);
     }
 }

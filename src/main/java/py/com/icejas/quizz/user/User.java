@@ -1,4 +1,4 @@
-package py.com.icejas.quizz.model;
+package py.com.icejas.quizz.user;
 
 import java.sql.Timestamp;
 
