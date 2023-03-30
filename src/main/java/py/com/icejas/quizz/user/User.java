@@ -9,6 +9,8 @@ public class User {
     private Timestamp createAt;
     private Timestamp lastAccess;
     private String status;
+    private Integer totalScored;
+    private Integer roleId;
     private Integer churchId;
 
     public User() {
@@ -68,5 +70,34 @@ public class User {
 
     public void setChurchId(Integer churchId) {
         this.churchId = churchId;
+    }
+
+    public Integer getTotalScored() {
+        return totalScored;
+    }
+
+    public void setTotalScored(Integer totalScored) {
+        this.totalScored = totalScored;
+    }
+
+    public Integer getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", password='" + password + '\'' +
+                ", createAt=" + createAt +
+                ", lastAccess=" + lastAccess +
+                ", status='" + status + '\'' +
+                ", churchId=" + churchId +
+                '}';
     }
 }
