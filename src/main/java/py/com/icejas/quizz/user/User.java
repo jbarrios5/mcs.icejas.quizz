@@ -97,6 +97,8 @@ public class User {
                 ", createAt=" + createAt +
                 ", lastAccess=" + lastAccess +
                 ", status='" + status + '\'' +
+                ", totalScored=" + totalScored +
+                ", roleId=" + roleId +
                 ", churchId=" + churchId +
                 '}';
     }

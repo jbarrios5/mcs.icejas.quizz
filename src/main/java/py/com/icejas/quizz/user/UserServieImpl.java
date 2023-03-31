@@ -28,7 +28,7 @@ public class UserServieImpl implements UserService{
 
     @Override
     public List<UserDTO> getUsers() {
-
-        return null;
+        log.info("We'll get users");
+        return userDAO.getUsers();
     }
 }
