@@ -16,6 +16,8 @@ public class UserDAOImpl implements UserDAO{
     private static final String GET_USERS = "select u.name,u.full_name ,u.last_access ,u.status,u.total_scored, r.name as roleName ,c.name as church  " +
             "from users u join church c on c.id  = u.id_church join role r on r.id = u.id_role";
 
+    private static final String GET_USER_BY_ID = "select u.name,u.full_name ,u.last_access ,u.status,u.total_scored, r.name as roleName ,c.name as church  " +
+            "from users u join church c on c.id  = u.id_church join role r on r.id = u.id_role WHERE u.id = ?" ;
     private static final Logger log = LoggerFactory.getLogger(UserDAOImpl.class);
     private final JdbcTemplate jdbcTemplate;
 
@@ -49,7 +51,8 @@ public class UserDAOImpl implements UserDAO{
     }
 
     @Override
-    public UserDTO getUser(Integer userId) throws ApiRequestException {
-        return null;
+    public UserDTO getUserById(Integer userId) throws ApiRequestException {
+        return jdbcTemplate.queryForObject(GET_USER_BY_ID,new Object [] {userId},new  UserMapper());
+
     }
 }

@@ -5,5 +5,6 @@ import java.util.List;
 public interface UserService {
     void insertUser(User user);
     List<UserDTO> getUsers();
+    UserDTO getUserById(Integer id);
 
 }

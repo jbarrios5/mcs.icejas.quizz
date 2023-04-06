@@ -30,8 +30,6 @@ public class UserServieImpl implements UserService{
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setCreateAt(Timestamp.valueOf(LocalDateTime.now()));
 
-
-
         userDAO.insertUser(user);
     }
 
@@ -39,5 +37,12 @@ public class UserServieImpl implements UserService{
     public List<UserDTO> getUsers() {
         log.info("We'll get users");
         return userDAO.getUsers();
+    }
+
+    @Override
+    public UserDTO getUserById(Integer id) {
+        log.info(String.format("We'll get user with id [%s]",id));
+
+        return userDAO.getUserById(id);
     }
 }

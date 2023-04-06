@@ -23,5 +23,10 @@ public class UserController {
     ){
         userService.insertUser(user);
     }
-
+    @GetMapping("/{id}")
+    public UserDTO getUser(
+            @PathVariable Integer id
+    ){
+        return userService.getUserById(id);
+    }
 }

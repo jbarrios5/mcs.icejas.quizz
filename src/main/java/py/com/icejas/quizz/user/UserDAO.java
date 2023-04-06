@@ -8,6 +8,7 @@ public interface UserDAO {
     void insertUser(User user) throws ApiRequestException;
     List<UserDTO> getUsers() throws ApiRequestException;
 
-    UserDTO getUser(Integer userId) throws ApiRequestException;
+    UserDTO getUserById(Integer userId) throws ApiRequestException;
+
 
 }
