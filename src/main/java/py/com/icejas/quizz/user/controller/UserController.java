@@ -1,7 +1,10 @@
-package py.com.icejas.quizz.user;
+package py.com.icejas.quizz.user.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import py.com.icejas.quizz.user.dto.UserDTO;
+import py.com.icejas.quizz.commons.User;
+import py.com.icejas.quizz.user.service.UserService;
 
 import java.util.List;
 

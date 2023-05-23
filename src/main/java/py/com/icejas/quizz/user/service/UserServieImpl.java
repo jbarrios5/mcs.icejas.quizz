@@ -1,4 +1,4 @@
-package py.com.icejas.quizz.user;
+package py.com.icejas.quizz.user.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,15 +7,17 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import py.com.icejas.quizz.constants.ApiError;
 import py.com.icejas.quizz.exception.ApiRequestException;
+import py.com.icejas.quizz.user.dao.UserDAO;
+import py.com.icejas.quizz.user.dto.UserDTO;
+import py.com.icejas.quizz.commons.User;
 
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
 
-public class UserServieImpl implements UserService{
+public class UserServieImpl implements UserService {
     private static final Logger log = LoggerFactory.getLogger(UserServieImpl.class);
     @Autowired
     UserDAO userDAO;

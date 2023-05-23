@@ -1,4 +1,4 @@
-package py.com.icejas.quizz.user;
+package py.com.icejas.quizz.user.dao;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,11 +6,14 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import py.com.icejas.quizz.constants.ApiError;
 import py.com.icejas.quizz.exception.ApiRequestException;
+import py.com.icejas.quizz.user.dto.UserDTO;
+import py.com.icejas.quizz.user.mapper.UserMapper;
+import py.com.icejas.quizz.commons.User;
 
 import java.util.List;
 
 @Repository
-public class UserDAOImpl implements UserDAO{
+public class UserDAOImpl implements UserDAO {
     private static final String  INSERT_USER = "INSERT INTO users (name, full_name, password, create_at, last_access, status, total_scored, id_church, id_role) " +
             "values (?,?,?,?,?,?,?,?,?)";
     private static final String GET_USERS = "select u.name,u.full_name ,u.last_access ,u.status,u.total_scored, r.name as roleName ,c.name as church  " +

@@ -1,4 +1,4 @@
-package py.com.icejas.quizz.user;
+package py.com.icejas.quizz.user.dto;
 
 import py.com.icejas.quizz.constants.Role;
 
