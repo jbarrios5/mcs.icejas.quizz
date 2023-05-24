@@ -1,12 +1,14 @@
-package py.com.icejas.quizz.constants;
+package py.com.icejas.quizz.commons.constant;
 
-public enum ApiError {
+public enum ApiResponseCode {
     USER_NOT_FOUND ("db100"),
     BAD_REQUEST_DATA("rq100"),
     LOGIN_FAILED("db101"),
+    LOGIN_SUCCESFULLY("a100"),
     UNEXPECTED_ERROR("500");
+
     private String code;
-    ApiError(String code) {
+    ApiResponseCode(String code) {
         this.code = code;
 
     }

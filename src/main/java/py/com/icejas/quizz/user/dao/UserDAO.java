@@ -2,7 +2,7 @@ package py.com.icejas.quizz.user.dao;
 
 import py.com.icejas.quizz.exception.ApiRequestException;
 import py.com.icejas.quizz.user.dto.UserDTO;
-import py.com.icejas.quizz.commons.User;
+import py.com.icejas.quizz.commons.bean.User;
 
 import java.util.List;
 

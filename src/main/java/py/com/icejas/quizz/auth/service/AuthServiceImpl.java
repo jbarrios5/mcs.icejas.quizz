@@ -4,36 +4,44 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import py.com.icejas.quizz.auth.dao.AuthDAO;
 import py.com.icejas.quizz.auth.dto.AuthDTO;
-import py.com.icejas.quizz.commons.AccessToken;
-import py.com.icejas.quizz.commons.User;
-import py.com.icejas.quizz.constants.ApiError;
+import py.com.icejas.quizz.auth.dto.UserDTO;
+import py.com.icejas.quizz.commons.bean.AccessToken;
+import py.com.icejas.quizz.commons.bean.Session;
+import py.com.icejas.quizz.commons.bean.User;
+import py.com.icejas.quizz.commons.constant.ApiMessage;
+import py.com.icejas.quizz.commons.constant.ApiResponseCode;
 import py.com.icejas.quizz.exception.ApiRequestException;
-
-import java.util.UUID;
 
 public class AuthServiceImpl implements AuthService{
     @Autowired
     private AuthDAO authDAO;
     @Autowired
     private PasswordEncoder passwordEncoder;
-
+    @Autowired
+    private SessionService sessionService;
     @Autowired
     private AccessTokenService accessTokenService;
     @Override
     public AuthDTO login(String userName, String password) {
 
-        User user = authDAO.getUserByUserName(userName);
+        UserDTO user = authDAO.getUserByUserName(userName);
         if( user == null )
-            throw new ApiRequestException(ApiError.USER_NOT_FOUND.getCode());
+            throw new ApiRequestException(ApiResponseCode.USER_NOT_FOUND.getCode());
 
         if(!passwordEncoder.matches(password,user.getPassword()))
-            throw new ApiRequestException(ApiError.LOGIN_FAILED.getCode());
+            throw new ApiRequestException(ApiResponseCode.LOGIN_FAILED.getCode());
+
 
         AccessToken accessToken = accessTokenService.createAccessToken();
 
-        //todo crear session
+        Session session =  sessionService.createSession(accessToken,user.getId());
 
-        return null;
+        AuthDTO authDTO = new AuthDTO();
+        authDTO.setAccessToken(accessToken);
+        authDTO.setMessage(ApiMessage.LOGIN_SUCCESFULLY);
+
+
+        return authDTO;
 
 
     }

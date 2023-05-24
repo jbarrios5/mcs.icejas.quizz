@@ -1,7 +1,7 @@
 package py.com.icejas.quizz.user.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
-import py.com.icejas.quizz.constants.Role;
+import py.com.icejas.quizz.commons.constant.Role;
 import py.com.icejas.quizz.user.dto.UserDTO;
 
 import java.sql.ResultSet;

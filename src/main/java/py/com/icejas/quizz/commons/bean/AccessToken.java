@@ -1,4 +1,4 @@
-package py.com.icejas.quizz.commons;
+package py.com.icejas.quizz.commons.bean;
 
 import java.sql.Timestamp;
 

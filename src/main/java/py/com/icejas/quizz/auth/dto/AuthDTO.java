@@ -1,7 +1,7 @@
 package py.com.icejas.quizz.auth.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import py.com.icejas.quizz.commons.AccessToken;
+import py.com.icejas.quizz.commons.bean.AccessToken;
 
 public class AuthDTO {
     @JsonProperty(value = "access_token")

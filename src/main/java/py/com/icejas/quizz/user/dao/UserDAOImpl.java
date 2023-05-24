@@ -4,11 +4,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import py.com.icejas.quizz.constants.ApiError;
+import py.com.icejas.quizz.commons.constant.ApiResponseCode;
 import py.com.icejas.quizz.exception.ApiRequestException;
 import py.com.icejas.quizz.user.dto.UserDTO;
 import py.com.icejas.quizz.user.mapper.UserMapper;
-import py.com.icejas.quizz.commons.User;
+import py.com.icejas.quizz.commons.bean.User;
 
 import java.util.List;
 
@@ -43,7 +43,7 @@ public class UserDAOImpl implements UserDAO {
         );
 
         if( result <= 0 )
-            throw new ApiRequestException("We have an error inserting user errorCode="+ ApiError.UNEXPECTED_ERROR);
+            throw new ApiRequestException("We have an error inserting user errorCode="+ ApiResponseCode.UNEXPECTED_ERROR);
 
         log.info("User inserted successfully");
     }
