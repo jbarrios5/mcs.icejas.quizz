@@ -5,7 +5,7 @@ import py.com.icejas.quizz.commons.bean.Session;
 import py.com.icejas.quizz.commons.bean.User;
 
 public interface SessionService {
-    Session createSession(AccessToken accessToken, Integer userId);
+    Boolean createSession(AccessToken accessToken, Integer userId);
 
     Boolean isSessionExpires();
 

@@ -21,7 +21,7 @@ public class AuthController {
         return authService.login(userName,password);
     }
 
-    @PostMapping("/")
+    @PostMapping("/logout")
     public AuthDTO logout(
             @RequestParam(value = "access_token",required = true) String accessToken
     ){

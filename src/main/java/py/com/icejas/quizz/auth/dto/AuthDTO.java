@@ -7,7 +7,7 @@ public class AuthDTO {
     @JsonProperty(value = "access_token")
     private AccessToken accessToken;
     private String message;
-
+    private Integer userId;
     public AuthDTO() {
     }
 
@@ -25,5 +25,13 @@ public class AuthDTO {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }
