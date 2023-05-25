@@ -24,4 +24,12 @@ public class AccessToken {
     public void setExpiration(Timestamp expires) {
         this.expiration = expires;
     }
+
+    @Override
+    public String toString() {
+        return "AccessToken{" +
+                "value='" + value + '\'' +
+                ", expiration=" + expiration +
+                '}';
+    }
 }

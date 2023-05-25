@@ -7,8 +7,7 @@ import py.com.icejas.quizz.auth.dao.AuthDAO;
 import py.com.icejas.quizz.auth.dto.AuthDTO;
 import py.com.icejas.quizz.auth.dto.AuthUserDTO;
 import py.com.icejas.quizz.commons.bean.AccessToken;
-import py.com.icejas.quizz.commons.bean.Session;
-import py.com.icejas.quizz.commons.constant.ApiMessage;
+import py.com.icejas.quizz.commons.constant.ApiConstant;
 import py.com.icejas.quizz.commons.constant.ApiResponseCode;
 import py.com.icejas.quizz.commons.constant.UserStatus;
 import py.com.icejas.quizz.exception.ApiRequestException;
@@ -42,14 +41,13 @@ public class AuthServiceImpl implements AuthService{
         if(!hasSession)
             throw new ApiRequestException(ApiResponseCode.SESSION_ERROR.getCode());
 
-
         AuthDTO authDTO = new AuthDTO();
         authDTO.setUserId(user.getId());
         authDTO.setAccessToken(accessToken);
-        authDTO.setMessage(ApiMessage.LOGIN_SUCCESFULLY);
+        authDTO.setMessage(ApiConstant.LOGIN_SUCCESFULLY);
 
         return authDTO;
-
-
     }
+
+
 }
