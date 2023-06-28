@@ -20,11 +20,11 @@ public class AuthController {
         return authService.login(userName,password);
     }
 
-    @PutMapping("/logout")
+    @DeleteMapping("/logout")
     public Boolean logout(
-            @RequestParam(value = "session_id",required = true) String sessionId
+            @RequestParam(value = "access_token",required = true) String accessToken
     ){
-        return authService.logout(sessionId);
+        return authService.logout(accessToken);
     }
 
 

@@ -16,7 +16,7 @@ public class SessionDAOImpl implements SessionDAO{
     private static final Logger log = LoggerFactory.getLogger(SessionDAOImpl.class);
     private static final String INSERT_SESSION = "INSERT INTO session (user_id,token,expiration) VALUES(?,?,?)";
     private static final String GET_SESSION_FROM_AT= "select * from session where token = ?";
-    private static final String UPDATE_SESSION_INVALIDATE= "update  session set  expiration = ? where id = ?";
+    private static final String UPDATE_SESSION_INVALIDATE= "update  session set  expiration = ? where token = ?";
     private final JdbcTemplate jdbcTemplate;
 
     public SessionDAOImpl(JdbcTemplate jdbcTemplate) {
@@ -55,13 +55,13 @@ public class SessionDAOImpl implements SessionDAO{
     }
 
     @Override
-    public boolean logout(String sessionId, Timestamp currentDate) {
-        log.info("Updating session logout {}",sessionId);
+    public boolean logout(String accessToken, Timestamp currentDate) {
+        log.info("Updating session logout {}",accessToken);
         int result = 0 ;
         try {
             result = jdbcTemplate.update(UPDATE_SESSION_INVALIDATE,new Object[]{
                     currentDate,
-                    Integer.valueOf(sessionId)
+                    accessToken
 
             });
         }catch (Exception e){
