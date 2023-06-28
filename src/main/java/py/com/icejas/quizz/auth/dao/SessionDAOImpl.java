@@ -8,11 +8,15 @@ import org.springframework.stereotype.Repository;
 import py.com.icejas.quizz.auth.mapper.SessionMapper;
 import py.com.icejas.quizz.auth.mapper.UserMapper;
 import py.com.icejas.quizz.commons.bean.Session;
+
+import java.sql.Timestamp;
+
 @Repository
 public class SessionDAOImpl implements SessionDAO{
     private static final Logger log = LoggerFactory.getLogger(SessionDAOImpl.class);
     private static final String INSERT_SESSION = "INSERT INTO session (user_id,token,expiration) VALUES(?,?,?)";
     private static final String GET_SESSION_FROM_AT= "select * from session where token = ?";
+    private static final String UPDATE_SESSION_INVALIDATE= "update  session set  expiration = ? where id = ?";
     private final JdbcTemplate jdbcTemplate;
 
     public SessionDAOImpl(JdbcTemplate jdbcTemplate) {
@@ -48,5 +52,24 @@ public class SessionDAOImpl implements SessionDAO{
             log.debug("UnepexectedError: {}",e.getMessage());
             return null;
         }
+    }
+
+    @Override
+    public boolean logout(String sessionId, Timestamp currentDate) {
+        log.info("Updating session logout {}",sessionId);
+        int result = 0 ;
+        try {
+            result = jdbcTemplate.update(UPDATE_SESSION_INVALIDATE,new Object[]{
+                    currentDate,
+                    Integer.valueOf(sessionId)
+
+            });
+        }catch (Exception e){
+            log.debug("Unexpected error updating session {}",e.getMessage());
+            result = 0;
+        }
+
+
+        return result > 0 ;
     }
 }

@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import py.com.icejas.quizz.commons.bean.AccessToken;
 
 public class AuthDTO {
-    @JsonProperty(value = "access_token")
     private AccessToken accessToken;
     private String message;
     private Integer userId;

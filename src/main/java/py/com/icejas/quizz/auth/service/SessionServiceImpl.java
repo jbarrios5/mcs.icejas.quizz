@@ -59,4 +59,11 @@ public class SessionServiceImpl implements SessionService{
 
         return session;
     }
+
+    @Override
+    public Boolean invalidateSession(String sessionId) {
+
+        Timestamp now = Timestamp.valueOf(LocalDateTime.now());
+        return sessionDAO.logout(sessionId,now);
+    }
 }

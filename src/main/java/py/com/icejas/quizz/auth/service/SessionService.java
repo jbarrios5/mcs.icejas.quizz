@@ -10,4 +10,6 @@ public interface SessionService {
     Session getSessionFromAccessToken(String accessToken);
     Boolean isSessionExpires(Session session);
 
+    Boolean invalidateSession(String sessionId);
+
 }

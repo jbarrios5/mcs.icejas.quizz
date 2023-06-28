@@ -12,6 +12,7 @@ import py.com.icejas.quizz.user.service.UserService;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins= {"*"}, maxAge = 4800, allowCredentials = "false" )
 @RequestMapping("api/v1/users")
 public class UserController {
     @Autowired

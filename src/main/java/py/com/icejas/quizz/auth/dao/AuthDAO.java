@@ -5,4 +5,7 @@ import py.com.icejas.quizz.exception.ApiRequestException;
 
 public interface AuthDAO {
     AuthUserDTO getUserByUserName(String userName) throws ApiRequestException;
+
+
+
 }

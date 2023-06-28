@@ -50,4 +50,9 @@ public class AuthServiceImpl implements AuthService{
     }
 
 
+    @Override
+    public boolean logout(String sessionId) {
+
+        return sessionService.invalidateSession(sessionId);
+    }
 }
