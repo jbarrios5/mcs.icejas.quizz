@@ -33,12 +33,11 @@ public class UserController {
         Session session = sessionService.getSessionFromAccessToken(accessToken);
         userService.insertUser(user);
     }
-    @GetMapping("/{id}")
+    @GetMapping("/session")
     public UserDTO getUser(
-            @PathVariable Integer id,
             @RequestHeader(value = ApiConstant.ACCESS_TOKEN,required = true) String accessToken
     ){
         Session session = sessionService.getSessionFromAccessToken(accessToken);
-        return userService.getUserById(id);
+        return userService.getUserById(session.getUserId());
     }
 }
