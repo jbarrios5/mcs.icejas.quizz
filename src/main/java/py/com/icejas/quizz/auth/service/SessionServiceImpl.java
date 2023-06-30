@@ -1,5 +1,7 @@
 package py.com.icejas.quizz.auth.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
@@ -15,7 +17,7 @@ import java.time.LocalDateTime;
 
 @Component
 public class SessionServiceImpl implements SessionService{
-
+    private static final Logger log = LoggerFactory.getLogger(SessionServiceImpl.class);
     private final SessionDAO sessionDAO;
     @Autowired
     public SessionServiceImpl(SessionDAO sessionDAO) {
@@ -36,7 +38,7 @@ public class SessionServiceImpl implements SessionService{
     @Override
     public Boolean isSessionExpires(Session session) {
 
-
+        log.info("Checking at is not expires...");
         Timestamp now = Timestamp.valueOf(LocalDateTime.now());
 
         if(session.getExpiration().compareTo(now) > 0 )
@@ -54,6 +56,7 @@ public class SessionServiceImpl implements SessionService{
 
         boolean isValidSession = isSessionExpires(session);
 
+        log.info(String.format("Is session valid [%b]",isValidSession));
         if(!isValidSession)
             throw  new ApiRequestException(ApiResponseCode.SESSION_EXPIRES.getCode(), HttpStatus.BAD_REQUEST);
 
@@ -61,9 +64,10 @@ public class SessionServiceImpl implements SessionService{
     }
 
     @Override
-    public Boolean invalidateSession(String sessionId) {
+    public Boolean invalidateSession(String accessToken) {
 
+        log.info("Starting invalidated session ");
         Timestamp now = Timestamp.valueOf(LocalDateTime.now());
-        return sessionDAO.logout(sessionId,now);
+        return sessionDAO.logout(accessToken,now);
     }
 }

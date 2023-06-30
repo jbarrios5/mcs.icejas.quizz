@@ -6,6 +6,9 @@ import py.com.icejas.quizz.auth.service.SessionService;
 import py.com.icejas.quizz.commons.bean.Session;
 import py.com.icejas.quizz.questions.dao.QuestionDAO;
 import py.com.icejas.quizz.questions.dto.QuestionDTO;
+
+import java.util.List;
+
 @Service
 public class QuestionServiceImpl implements QuestionService{
     @Autowired
@@ -13,7 +16,7 @@ public class QuestionServiceImpl implements QuestionService{
     @Autowired
     private SessionService sessionService;
     @Override
-    public QuestionDTO getQuestions(String accessToken) {
+    public List<QuestionDTO> getQuestions(String accessToken) {
         Session session = sessionService.getSessionFromAccessToken(accessToken);
         return questionDAO.getQuestions();
     }

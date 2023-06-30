@@ -9,6 +9,8 @@ import py.com.icejas.quizz.commons.constant.ApiConstant;
 import py.com.icejas.quizz.questions.dto.QuestionDTO;
 import py.com.icejas.quizz.questions.service.QuestionService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/v1/questions")
 public class QuestionController {
@@ -16,7 +18,7 @@ public class QuestionController {
     private QuestionService questionService;
 
     @GetMapping("/")
-    public QuestionDTO getQuestion(
+    public List<QuestionDTO> getQuestion(
             @RequestHeader(value = ApiConstant.ACCESS_TOKEN,required = true) String accessToken
     ){
         return questionService.getQuestions(accessToken);

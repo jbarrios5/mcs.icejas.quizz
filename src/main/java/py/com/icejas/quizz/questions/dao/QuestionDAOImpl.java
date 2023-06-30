@@ -9,6 +9,9 @@ import py.com.icejas.quizz.questions.dto.QuestionDTO;
 import py.com.icejas.quizz.questions.mapper.QuestionMapper;
 import py.com.icejas.quizz.user.dao.UserDAOImpl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Repository
 public class QuestionDAOImpl implements QuestionDAO{
     private static final String GET_QUESTION = "select  * from public.quiz  where PLAYED is false ";
@@ -19,12 +22,12 @@ public class QuestionDAOImpl implements QuestionDAO{
         this.jdbcTemplate = jdbcTemplate;
     }
     @Override
-    public QuestionDTO getQuestions() {
+    public List<QuestionDTO> getQuestions() {
         log.info("Getting question");
 
-        QuestionDTO questionDTO = new QuestionDTO();
+        List<QuestionDTO> questionDTO = new ArrayList<>();
         try {
-            questionDTO = jdbcTemplate.queryForObject(GET_QUESTION,new Object []{},new QuestionMapper());
+            questionDTO = jdbcTemplate.query(GET_QUESTION,new Object []{},new QuestionMapper());
         }catch (EmptyResultDataAccessException e){
             log.error(e.getMessage());
         }
