@@ -16,7 +16,7 @@ import java.util.List;
 @Repository
 public class QuestionDAOImpl implements QuestionDAO{
     private static final String GET_QUESTION = "select  * from public.quiz  where PLAYED is false ";
-    private static final String CHECK_USER_PLAYED = "select COUNT(*) from user_quiz uq where user_id = ? and played ='N'";
+    private static final String CHECK_USER_PLAYED = "select COUNT(*) from public.user_quiz uq where uq.user_id = ? AND uq.played = 'N'";
 
     private static final Logger log = LoggerFactory.getLogger(QuestionDAOImpl.class);
     private final JdbcTemplate jdbcTemplate;
@@ -42,7 +42,7 @@ public class QuestionDAOImpl implements QuestionDAO{
     public Boolean isUserPlayed(Integer userId) {
         int result = 0;
 
-        result = jdbcTemplate.update(CHECK_USER_PLAYED,new Object[]{userId}, Integer.class);
+        result = jdbcTemplate.queryForObject(CHECK_USER_PLAYED,new Object[]{userId},Integer.class);
 
         return result > 0;
 
