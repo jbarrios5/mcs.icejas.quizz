@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import py.com.icejas.quizz.auth.service.SessionService;
 import py.com.icejas.quizz.commons.bean.Session;
+import py.com.icejas.quizz.exception.ApiRequestException;
 import py.com.icejas.quizz.questions.dao.QuestionDAO;
 import py.com.icejas.quizz.questions.dto.QuestionDTO;
 
@@ -18,6 +19,11 @@ public class QuestionServiceImpl implements QuestionService{
     @Override
     public List<QuestionDTO> getQuestions(String accessToken) {
         Session session = sessionService.getSessionFromAccessToken(accessToken);
+        boolean isPlayed = questionDAO.isUserPlayed(session.getUserId());
+
+        if(!isPlayed)
+            throw new ApiRequestException("User was played");
+
         return questionDAO.getQuestions();
     }
 }

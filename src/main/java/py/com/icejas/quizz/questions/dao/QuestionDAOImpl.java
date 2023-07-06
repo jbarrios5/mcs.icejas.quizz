@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import py.com.icejas.quizz.exception.ApiRequestException;
 import py.com.icejas.quizz.questions.dto.QuestionDTO;
 import py.com.icejas.quizz.questions.mapper.QuestionMapper;
 import py.com.icejas.quizz.user.dao.UserDAOImpl;
@@ -15,6 +16,8 @@ import java.util.List;
 @Repository
 public class QuestionDAOImpl implements QuestionDAO{
     private static final String GET_QUESTION = "select  * from public.quiz  where PLAYED is false ";
+    private static final String CHECK_USER_PLAYED = "select COUNT(*) from user_quiz uq where user_id = ? and played ='N'";
+
     private static final Logger log = LoggerFactory.getLogger(QuestionDAOImpl.class);
     private final JdbcTemplate jdbcTemplate;
 
@@ -33,5 +36,15 @@ public class QuestionDAOImpl implements QuestionDAO{
         }
 
         return questionDTO;
+    }
+
+    @Override
+    public Boolean isUserPlayed(Integer userId) {
+        int result = 0;
+
+        result = jdbcTemplate.update(CHECK_USER_PLAYED,new Object[]{userId}, Integer.class);
+
+        return result > 0;
+
     }
 }

@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface QuestionDAO {
     List<QuestionDTO> getQuestions();
+
+    Boolean isUserPlayed(Integer userId);
 }
